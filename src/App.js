@@ -57,15 +57,12 @@ class App extends Component {
           <ContactForm onSubmit={this.addContact} />
         </Section>
         <Section title="Contacts">
-          <Filter value={filter} onChange={this.changeFilter} />
+          {contacts.length > 0 && (
+            <Filter value={filter} onChange={this.changeFilter} />
+          )}
           {visibleContacts.length ? (
             <ContactList
-              contacts={visibleContacts}
-              onDeleteContact={this.deleteContact}
-            />
-          ) : contacts.length && filter === '' ? (
-            <ContactList
-              contacts={contacts}
+              contacts={visibleContacts.length ? visibleContacts : contacts}
               onDeleteContact={this.deleteContact}
             />
           ) : (
